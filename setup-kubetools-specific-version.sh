@@ -22,13 +22,12 @@ then
 EOF
 	
 	sudo apt-get update && sudo apt-get install -y apt-transport-https curl
-	curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-	cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
-	deb https://apt.kubernetes.io/ kubernetes-xenial main
-EOF
+        sudo mkdir /etc/apt/keyrings
+	echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+	curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 	sudo apt-get update
-	sudo apt-get install -y kubelet=1.27.1-00 kubeadm=1.27.1-00 kubectl=1.27.1-00
+	sudo apt-get install -y kubelet=1.28.0-1.1 kubeadm=1.28.0-1.1 kubectl=1.28.0-1.1
 	sudo apt-mark hold kubelet kubeadm kubectl
 	swapoff -a
 	
