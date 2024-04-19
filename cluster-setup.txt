@@ -1,5 +1,5 @@
 ON AL NODES
-git clone https://github.com/sandervanvugt/cka
+git clone https://github.com/pankajps/cka
 cd cka
 ./setup-container.sh
 sudo ./setup-kubetools-specific-version.sh
