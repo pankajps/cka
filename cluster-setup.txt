@@ -1,4 +1,5 @@
 ON AL NODES
+sudo ufw disable
 git clone https://github.com/pankajps/cka
 cd cka
 ./setup-container.sh
